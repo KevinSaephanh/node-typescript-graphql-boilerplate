@@ -29,7 +29,7 @@ export class UserResolver {
   }
 
   @Mutation(() => Boolean)
-  async register(@Arg("input") input: RegisterInput): Promise<boolean | null> {
+  async register(@Arg("input") input: RegisterInput): Promise<boolean> {
     const { username, email, password } = input;
     const hashedPassword = await hash(password, 12);
 
@@ -85,7 +85,7 @@ export class UserResolver {
   async updateUser(
     @Arg("id", () => Int) id: number,
     @Arg("input", () => UserUpdateInput) input: UserUpdateInput
-  ): Promise<boolean | null> {
+  ): Promise<boolean> {
     try {
       await User.update({ id }, input);
       return true;
@@ -97,7 +97,7 @@ export class UserResolver {
 
   @Mutation(() => Boolean)
   @UseMiddleware(isAuth)
-  async deleteUser(@Arg("id", () => Int) id: number): Promise<boolean | null> {
+  async deleteUser(@Arg("id", () => Int) id: number): Promise<boolean> {
     try {
       await User.delete({ id });
       return true;

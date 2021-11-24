@@ -29,6 +29,6 @@
     "indentSize": 2,
     "tabSize": 2
   },
-  "include": ["**/*.ts", "config/**/*.ts"],
+  "include": ["./src/**/*.tsx", "./src/**/*.ts"],
   "exclude": ["node_modules", "dist/"]
 }

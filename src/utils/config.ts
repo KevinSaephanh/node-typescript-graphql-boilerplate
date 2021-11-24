@@ -19,7 +19,7 @@ export default {
     type: "postgres",
     host: isProd ? process.env.DB_HOST : process.env.DEV_DB_HOST,
     database: isProd ? process.env.DB_NAME : process.env.DEV_DB_NAME,
-    port: isProd ? process.env.DB_PORT : process.env.DEV_DB_PORT,
+    port: isProd ? +process.env.DB_PORT : +process.env.DEV_DB_PORT,
     username: isProd ? process.env.DB_USERNAME : process.env.DEV_DB_USERNAME,
     password: isProd ? process.env.DB_PASSWORD : process.env.DEV_DB_PASSWORD,
     entities: [User],
