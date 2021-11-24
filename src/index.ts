@@ -2,12 +2,13 @@ import "reflect-metadata";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { createSchema } from "./utils/schema";
+import { createConnection } from "typeorm";
 import config from "./utils/config";
 
-const PORT = config.port;
+const { port } = config;
 
 const start = async () => {
-  // await createConnection(config.db);
+  await createConnection(config.db);
 
   const app = express();
   const server = new ApolloServer({
@@ -18,7 +19,7 @@ const start = async () => {
   await server.start();
   server.applyMiddleware({ app });
 
-  app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
+  app.listen(port, () => console.log(`Server listening on port: ${port}`));
 };
 
 start();
